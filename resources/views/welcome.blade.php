@@ -18,7 +18,7 @@
         <div class="container mx-auto">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <a href="/" class="flex items-center">
-                    <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+                    <x-application-logo class="w-20 h-20 fill-current text-black" />
                 </a>
                 <div class="flex items-center space-x-4 mt-4 md:mt-0">
                     @auth
@@ -55,10 +55,10 @@
             </div>
 
               <!-- Toggle Switch for Dark Mode -->
-    
+
             <div class="flex justify-between items-center mt-16">
-                <p class="text-sm text-gray-500">© {{ date('Y') }} Sistem Informasi Perpustakaan Sekolah. <a href="https://abdulmanap.com">Dibuat dengan ❤️</a></p>
-                <p class="text-sm text-gray-500">Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})</p>
+                <p class="text-sm text-black">© {{ date('Y') }} Sistem Informasi Perpustakaan Sekolah. <a href="https://abdulmanap.com">Dibuat dengan ❤️</a></p>
+                <p class="text-sm text-black">Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})</p>
             </div>
         </div>
     </div>

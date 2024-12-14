@@ -15,14 +15,14 @@
                     <div class="flex items-center space-x-4">
                         <label for="start_date" class="font-medium text-gray-700 dark:text-gray-300">Mulai Tanggal:</label>
                         <input type="date" id="start_date" name="start_date" required
-                            class="border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block rounded-md p-2">
+                            class="border-gray-300 focus:ring-gray-500 focus:border-gray-500 block rounded-md p-2">
 
                         <label for="end_date" class="font-medium text-gray-700 dark:text-gray-300">Sampai Tanggal:</label>
                         <input type="date" id="end_date" name="end_date" required
-                            class="border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block rounded-md p-2">
+                            class="border-gray-300 focus:ring-gray-500 focus:border-gray-500 block rounded-md p-2">
 
                         <button type="submit"
-                            class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300">
+                            class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-300">
                             Cetak
                         </button>
                     </div>
@@ -40,27 +40,27 @@
                             <thead class="bg-gray-50 dark:bg-gray-800">
                                 <tr>
                                     <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                                        class="px-6 py-3 text-left text-xs font-medium text-black dark:text-gray-300 uppercase tracking-wider">
                                         Nomor Peminjaman
                                     </th>
                                     <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                                        class="px-6 py-3 text-left text-xs font-medium text-black dark:text-gray-300 uppercase tracking-wider">
                                         Nama Peminjam
                                     </th>
                                     <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                                        class="px-6 py-3 text-left text-xs font-medium text-black dark:text-gray-300 uppercase tracking-wider">
                                         Judul Buku
                                     </th>
                                     <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                                        class="px-6 py-3 text-left text-xs font-medium text-black dark:text-gray-300 uppercase tracking-wider">
                                         Tanggal Pinjam
                                     </th>
                                     <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                                        class="px-6 py-3 text-left text-xs font-medium text-black dark:text-gray-300 uppercase tracking-wider">
                                         Tanggal Kembali
                                     </th>
                                     <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                                        class="px-6 py-3 text-left text-xs font-medium text-black dark:text-gray-300 uppercase tracking-wider">
                                         Status
                                     </th>
                                 </tr>
@@ -71,19 +71,19 @@
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                                             {{ $p->no_peminjaman }}
                                         </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-900">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-black dark:text-gray-900">
                                             {{ $p->user->nama }}
                                         </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-900">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-black dark:text-gray-900">
                                             {{ $p->buku->nama_buku }}
                                         </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-900">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-black dark:text-gray-900">
                                             {{ \Carbon\Carbon::parse($p->tgl_peminjaman)->format('d M Y') }}
                                         </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-900">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-black dark:text-gray-900">
                                             {{ \Carbon\Carbon::parse($p->tgl_pengembalian)->format('d M Y') }}
                                         </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-900">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-black dark:text-gray-900">
                                             {{ $p->status }}
                                         </td>
                                     </tr>

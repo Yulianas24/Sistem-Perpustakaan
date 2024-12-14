@@ -6,8 +6,8 @@
         </h2>
     </x-slot>
 
-    <div class="py-6 px-4 sm:px-6 lg:px-6">
-        <div class="dark:bg-gray-900 overflow-hidden shadow-sm sm:rounded-lg">
+    <div class="grid gap-2 p-2">
+        <div class="bg-white dark:bg-gray-900 overflow-hidden shadow-sm sm:rounded-lg">
             @include('alert.alert-info')
 
             <div class="p-4 sm:p-6 dark:bg-gray-900 border-b border-gray-200">
@@ -21,15 +21,15 @@
                 @endif
 
                     <form action="{{ route('peminjaman-buku.index') }}" method="GET"
-                        class="flex flex-col sm:flex-row items-center mt-4 sm:mt-0 space-y-2 sm:space-y-0 sm:space-x-4">
+                        class="flex sm:flex-row items-center gap-2">
                         <input type="text" name="search" placeholder="Cari judul buku..."
                             value="{{ request('search') }}"
-                            class="border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block rounded-md p-2 w-full sm:w-auto">
+                            class="border-gray-300 focus:ring-gray-500 focus:border-gray-500 block rounded-md p-2 w-full sm:w-auto">
                         <input type="text" name="name" placeholder="Cari nama peminjam..."
                             value="{{ request('name') }}"
-                            class="border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block rounded-md p-2 w-full sm:w-auto">
+                            class="border-gray-300 focus:ring-gray-500 focus:border-gray-500 block rounded-md p-2 w-full sm:w-auto">
                         <select name="status"
-                            class="border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block rounded-md p-2 w-full sm:w-auto">
+                            class="border-gray-300 min-w-[200px] focus:ring-gray-500 focus:border-gray-500 block rounded-md p-2 w-full sm:w-auto">
                             <option value="">Semua Status</option>
                             <option value="Dipinjam" {{ request('status') == 'Dipinjam' ? 'selected' : '' }}>
                                 Dipinjam</option>
@@ -40,7 +40,7 @@
                                 PENDING</option>
                         </select>
                         <button type="submit"
-                            class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300">
+                            class="px-4 py-2 bg-gray-500 hover:bg-gray-600 text-white rounded-md">
                             Cari
                         </button>
                     </form>
@@ -51,27 +51,27 @@
                         <thead>
                             <tr>
                                 <th scope="col"
-                                    class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    class="px-4 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
                                     Nomor Peminjaman
                                 </th>
                                 <th scope="col"
-                                    class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    class="px-4 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
                                     Nama Peminjam
                                 </th>
                                 <th scope="col"
-                                    class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    class="px-4 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
                                     Judul Buku
                                 </th>
                                 <th scope="col"
-                                    class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    class="px-4 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
                                     Keterangan
                                 </th>
                                 <th scope="col"
-                                    class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    class="px-4 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
                                     Status
                                 </th>
                                 <th scope="col"
-                                    class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    class="px-4 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
                                     Aksi
                                 </th>
                             </tr>
@@ -94,7 +94,7 @@
                                     <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-900 flex space-x-2">
                                         @if(auth()->user()->role !== 'siswa')
                                         <a href="{{ route('peminjaman-buku.edit', $item->id) }}"
-                                            class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                            class="text-gray-600 hover:text-gray-900">Edit</a>
 
                                         <x-confirm-delete-modal>
                                             <x-slot name="trigger">
@@ -135,7 +135,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-500" colspan="6">
+                                    <td class="px-4 py-3 whitespace-nowrap text-sm text-black" colspan="6">
                                         Tidak ada data yang ditemukan.</td>
                                 </tr>
                             @endforelse

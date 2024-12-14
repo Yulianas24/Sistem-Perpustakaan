@@ -79,7 +79,7 @@
         <br />
 
         <div class="flex items-center space-x-4">
-            <x-primary-button class="bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800">
+            <x-primary-button class="bg-gray-600 hover:bg-gray-700 active:bg-gray-800">
                 {{ __('Simpan') }}
             </x-primary-button>
 

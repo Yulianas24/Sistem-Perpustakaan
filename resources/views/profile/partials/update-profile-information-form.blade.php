@@ -1,22 +1,21 @@
+@php
+$role = auth()->user()->role;
+@endphp
 <section>
     <header>
         <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
             {{ __('Profile Information') }}
         </h2>
-
         <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
             {{ __('Update profile kamu.') }}
         </p>
     </header>
-
     <form id="send-verification" method="post" action="{{ route('verification.send') }}">
         @csrf
     </form>
-
     <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
         @csrf
         @method('patch')
-
         <div>
             <x-input-label for="nama" :value="__('Name')" />
             <x-text-input id="nama" name="nama" type="text" class="mt-1 block w-full" :value="old('nama', $user->nama)"
@@ -40,13 +39,13 @@
         </div>
 
         <!-- Identity (e.g., ID number, Passport number) -->
+        @if ($role == 'siswa')
         <div>
             <x-input-label for="identitas" :value="__('NIS / NIP')" />
             <x-text-input id="identitas" name="identitas" type="text" class="mt-1 block w-full" :value="old('identitas', $user->identitas)"
                 required autocomplete="identitas" />
             <x-input-error class="mt-2" :messages="$errors->get('identitas')" />
         </div>
-
         <!-- Class -->
         <div>
             <x-input-label for="kelas" :value="__('Kelas')" />
@@ -54,8 +53,7 @@
                 required autocomplete="kelas" />
             <x-input-error class="mt-2" :messages="$errors->get('kelas')" />
         </div>
-
-
+        @endif
         <div>
             <x-input-label for="email" :value="__('Email')" />
             <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)"
@@ -68,7 +66,7 @@
                         {{ __('Your email address is unverified.') }}
 
                         <button form="send-verification"
-                            class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">
+                            class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 dark:focus:ring-offset-gray-800">
                             {{ __('Click here to re-send the verification email.') }}
                         </button>
                     </p>

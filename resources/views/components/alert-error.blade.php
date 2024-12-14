@@ -3,7 +3,7 @@
         role="alert-error">
         <span class="flex rounded-full bg-red-500 uppercase px-2 py-1 text-xs font-bold mr-3">GAGAL</span>
         <span class="font-semibold mr-2 text-left flex-auto">{{ $message }}</span>
-        <button type="button" class="text-red-500 hover:text-indigo-600 focus:outline-none focus:text-white-600"
+        <button type="button" class="text-red-500 hover:text-gray-600 focus:outline-none focus:text-white-600"
             onclick="this.parentElement.style.display='none'">
             <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                 <path
