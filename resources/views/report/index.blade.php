@@ -6,8 +6,8 @@
         </h2>
     </x-slot>
 
-    <div class="py-6 px-4 sm:px-6 lg:px-8">
-        <div class="dark:bg-gray-900 overflow-hidden shadow-sm sm:rounded-lg">
+    <div class="grid gap-2 p-2">
+        <div class="bg-white dark:bg-gray-900 overflow-hidden shadow-sm sm:rounded-lg">
             @include('alert.alert-info') <!-- Memasukkan alert jika ada -->
 
             <div class="p-4 sm:p-6 dark:bg-gray-900 border-b border-gray-200">
@@ -15,11 +15,11 @@
                     <div class="flex items-center space-x-4">
                         <label for="start_date" class="font-medium text-gray-700 dark:text-gray-300">Mulai Tanggal:</label>
                         <input type="date" id="start_date" name="start_date" required
-                            class="border-gray-300 focus:ring-gray-500 focus:border-gray-500 block rounded-md p-2">
+                            class="border border-gray-300 focus:ring-gray-500 focus:border-gray-500 block rounded-md p-2">
 
                         <label for="end_date" class="font-medium text-gray-700 dark:text-gray-300">Sampai Tanggal:</label>
                         <input type="date" id="end_date" name="end_date" required
-                            class="border-gray-300 focus:ring-gray-500 focus:border-gray-500 block rounded-md p-2">
+                            class="border border-gray-300 focus:ring-gray-500 focus:border-gray-500 block rounded-md p-2">
 
                         <button type="submit"
                             class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-300">

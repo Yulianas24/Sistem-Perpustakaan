@@ -22,7 +22,7 @@
     <div class="mb-4">
         <x-input-label for="description">{{ __('Keterangan') }}</x-input-label>
         <textarea id="description" name="description"
-            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-gray-500 focus:border-gray-500 sm:text-sm">{{ $pengembalian->description }}</textarea>
+            class="border mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-gray-500 focus:border-gray-500 sm:text-sm">{{ $pengembalian->description }}</textarea>
         @error('description')
             <x-input-error-set :message="$message" class="mt-2" />
         @enderror

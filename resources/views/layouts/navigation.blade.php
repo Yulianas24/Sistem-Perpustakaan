@@ -1,13 +1,13 @@
-<nav x-data="{ open: false }" class="flex-none border-r bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
+<nav x-data="{ open: false }" class="w-1/5 flex-none border-r bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
     <!-- Primary Navigation Menu -->
     @php
     $role = auth()->user()->role;
     @endphp
     <div class="grid">
         <!-- Logo -->
-        <div class="py-3 px-5 text-white dark:text-white-800 flex items-center">
+        <div class="px-5 h-[70px]  text-white dark:text-white-800 flex items-center">
             <a href="{{ route('dashboard') }}" class="flex items-center">
-                <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
+                <x-application-logo class="block h-9 w-9  fill-current text-gray-800 dark:text-gray-200" />
                 <div class="ml-2">
                     <div class="font-bold text-sm text-black dark:text-gray-200">{{ App\Models\Setting::first()->webname }}</div>
                     <div class="text-sm text-black">{{ App\Models\Setting::first()->description }}</div>

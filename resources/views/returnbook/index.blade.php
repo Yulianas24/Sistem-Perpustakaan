@@ -8,44 +8,42 @@
     </x-slot>
 
 
-    <div class="py-6 px-4 sm:px-6 lg:px-8">
-        <div class="dark:bg-gray-900 overflow-hidden shadow-sm sm:rounded-lg">
+    <div class="grid gap-2 p-2">
+        <div class="bg-white dark:bg-gray-900 overflow-hidden shadow-sm sm:rounded-lg">
             @include('alert.alert-info')
 
             <div class="p-4 sm:p-6 dark:bg-gray-900 border-b border-gray-200">
-
-                <div
-                    class="mb-4 flex flex-col sm:flex-row justify-between items-center space-y-2 sm:space-y-0 sm:space-x-4">
+                <div class="mb-4 flex items-center justify-between">
                     @if(auth()->user()->role !== 'admin')
                     <x-secondary-button href="{{ route('pengembalian-buku.create') }}">
                         Tambah
                     </x-secondary-button>
                     @endif
 
-                    <form action="{{ route('pengembalian-buku.index') }}" method="GET"
-                    class="flex flex-col sm:flex-row items-center mt-4 sm:mt-0 space-y-2 sm:space-y-0 sm:space-x-4">
-                    <input type="text" name="search" placeholder="Cari judul buku..."
-                        value="{{ request('search') }}"
-                        class="border-gray-300 focus:ring-gray-500 focus:border-gray-500 block rounded-md p-2 w-full sm:w-auto">
-                    <input type="text" name="name" placeholder="Cari nama peminjam..."
-                        value="{{ request('name') }}"
-                        class="border-gray-300 focus:ring-gray-500 focus:border-gray-500 block rounded-md p-2 w-full sm:w-auto">
-                    <select name="status"
-                        class="border-gray-300 focus:ring-gray-500 focus:border-gray-500 block rounded-md p-2 w-full sm:w-auto">
-                        <option value="">Semua Status</option>
-                        <option value="Dipinjam" {{ request('status') == 'Dipinjam' ? 'selected' : '' }}>
-                            Dipinjam</option>
-                        <option value="Dikembalikan" {{ request('status') == 'Dikembalikan' ? 'selected' : '' }}>
-                            Dikembalikan</option>
-                        <option value="ACC" {{ request('status') == 'ACC' ? 'selected' : '' }}>ACC</option>
-                        <option value="PENDING" {{ request('status') == 'PENDING' ? 'selected' : '' }}>
-                            PENDING</option>
-                    </select>
-                    <button type="submit"
-                        class="px-4 py-2 bg-gray-500 hover:bg-gray-600 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-gray-300">
-                        Cari
-                    </button>
-                </form>
+                    <form action="{{ route('pengembalian-buku.index') }}" method="GET" class="flex gap-2">
+                        <select name="status"
+                            class="border border-gray-300 focus:ring-gray-500 focus:border-gray-500 block rounded-md p-2 min-w-[200px] w-full sm:w-auto">
+                            <option value="">Semua Status</option>
+                            <option value="Dipinjam" {{ request('status') == 'Dipinjam' ? 'selected' : '' }}>
+                                Dipinjam</option>
+                            <option value="Dikembalikan" {{ request('status') == 'Dikembalikan' ? 'selected' : '' }}>
+                                Dikembalikan</option>
+                            <option value="ACC" {{ request('status') == 'ACC' ? 'selected' : '' }}>ACC</option>
+                            <option value="PENDING" {{ request('status') == 'PENDING' ? 'selected' : '' }}>
+                                PENDING</option>
+                        </select>
+
+                        <input type="text" name="name" placeholder="Cari nama peminjam..."
+                            value="{{ request('name') }}"
+                            class="border border-gray-300 focus:ring-gray-500 focus:border-gray-500 block rounded-md p-2 w-full sm:w-auto">
+                            <input type="text" name="search" placeholder="Cari judul buku..."
+                            value="{{ request('search') }}"
+                            class="border border-gray-300 focus:ring-gray-500 focus:border-gray-500 block rounded-md p-2 w-full sm:w-auto">
+                        <button type="submit"
+                            class="px-4 py-2 bg-gray-500 hover:bg-gray-600 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-gray-300">
+                            Cari
+                        </button>
+                    </form>
 
                 </div>
 
