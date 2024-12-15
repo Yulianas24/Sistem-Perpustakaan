@@ -1,5 +1,3 @@
-# Aplikasi Pengelolaan Perpustakaan Sekolah Berbasis Laravel 10
-
 ## Instalasi Tools (Localhost)
 
 - Git
@@ -44,13 +42,6 @@
 14. Setelah selesai, ketik `php artisan serve`.
 
 15. Selesai! Buka link [localhost:8000](http://localhost:8000) dan login sebagai admin.
-
-## Fitur-Fitur
-
-- Peminjaman Buku oleh siswa
-- Pengembalian Buku oleh siswa
-- Cetak Laporan
-- dll...
 
 <br/>
 
