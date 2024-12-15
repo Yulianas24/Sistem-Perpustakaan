@@ -42,14 +42,6 @@
                         <td class="px-6 py-4 text-sm font-medium text-black dark:text-gray-400 uppercase">Status</td>
                         <td class="px-6 py-4 text-lg text-gray-900 dark:text-white">{{ $borrowing->status }}</td>
                     </tr>
-                    <tr>
-                        <td class="px-6 py-4 text-sm font-medium text-black dark:text-gray-400 uppercase">Keterangan</td>
-                        <td class="px-6 py-4 text-lg text-gray-900 dark:text-white">{{ $borrowing->deskripsi }}</td>
-                    </tr>
-                    <tr>
-                        <td class="px-6 py-4 text-sm font-medium text-black dark:text-gray-400 uppercase">Denda</td>
-                        <td class="px-6 py-4 text-lg text-gray-900 dark:text-white">{{ $borrowing->total_denda }}</td>
-                    </tr>
 
                 </tbody>
             </table>

@@ -4,26 +4,32 @@
 
 
     <div class="mb-4">
-        <x-input-label for="status">{{ __('Status') }}</x-input-label>
-        <select id="status" name="status"
-            class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-gray-500 focus:border-gray-500 sm:text-sm">
-
-            <option value="">Semua Status</option>
-            <option value="ACC" {{ $pengembalian->status == 'ACC' ? 'selected' : '' }}>ACC</option>
-            <option value="PENDING" {{ $pengembalian->status == 'PENDING' ? 'selected' : '' }}>
-                PENDING</option>
+        <x-input-label for="status">{{ __('Status Keterlambatan') }}</x-input-label>
+        <select id="status" name="status" class="border px-3 py-2 mt-1 block w-full bg-white border-gray-300 rounded-md shadow-sm" required>
+            <option value="" selected disabled>Pilih Status</option>
+            <option value="Terlambat">Terlambat</option>
+            <option value="Tepat Waktu">Tepat Waktu</option>
         </select>
+
         @error('status')
             <x-input-error-set :message="$message" class="mt-2" />
         @enderror
     </div>
 
+    <div class="mb-4">
+        <x-input-label for="deskripsi">{{ __('Deskripsi') }}</x-input-label>
+        <x-text-input id="deskripsi" class="mt-1 block w-full" type="text" name="deskripsi"
+            value="{{ $pengembalian->deskripsi }}" required />
+        @error('deskripsi')
+            <x-input-error-set :message="$message" class="mt-2" />
+        @enderror
+    </div>
 
     <div class="mb-4">
-        <x-input-label for="description">{{ __('Keterangan') }}</x-input-label>
-        <textarea id="description" name="description"
-            class="border mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-gray-500 focus:border-gray-500 sm:text-sm">{{ $pengembalian->description }}</textarea>
-        @error('description')
+        <x-input-label for="total_denda">{{ __('Total Denda (Masukan 0 jika tidak ada)') }}</x-input-label>
+        <x-text-input id="total_denda" class="mt-1 block w-full" type="number" name="total_denda"
+            value="{{ $pengembalian->total_denda }}" required />
+        @error('total_denda')
             <x-input-error-set :message="$message" class="mt-2" />
         @enderror
     </div>

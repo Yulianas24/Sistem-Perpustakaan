@@ -43,84 +43,70 @@ class ReturnBookController extends Controller
             $pengembalian->where('status', $status);
         }
         $pengembalian = $pengembalian->paginate(10);
-     
+
         return view('returnbook.index', compact('pengembalian'));
     }
 
     public function create()
     {
-        $user = auth()->user();
-
-
-        $peminjaman = Peminjaman::where('user_id', $user->id)->get();
-
+        $peminjaman = Peminjaman::where('status', 'Dipinjam')->get();
         return view('returnbook.create', compact('peminjaman'));
     }
-
 
     public function show(string $id)
     {
         $pengembalian = Returbuku::findOrFail($id);
-
-
         return view('returnbook.show', compact('pengembalian'));
     }
 
-
     public function store(Request $request)
     {
-        $request->validate([
-            'borrowing_id' => 'required',
-            'status' => 'nullable',
-            'description' => 'nullable',
-            'photo' => 'nullable|image|mimes:jpeg,png,gif|max:2048',
+        $validatedData = $request->validate([
+            'peminjaman_id' => 'required',
+            'status' => 'string|required',
+            'deskripsi' => 'string|required',
+            'total_denda' => 'required',
+            // 'photo' => 'nullable|image|mimes:jpeg,png,gif|max:2048',
         ]);
-
-        $photoPath = null;
-
-        if ($request->hasFile('photo')) {
-            $photoPath = $request->file('photo')->store('photos', 'public'); //
-        }
 
         Returbuku::create([
-            'peminjaman_id' => $request->input('borrowing_id'),
-            'status' => 'PENDING',
-            'deskripsi' => 'Belum Disetujui',
-            'photo' => $photoPath,
+            'peminjaman_id' => $validatedData['peminjaman_id'],
+            'status' => $validatedData['status'],
+            'deskripsi' => $validatedData['deskripsi'],
+            'total_denda' => $validatedData['total_denda'],
         ]);
 
-        return redirect()->route('pengembalian-buku.index')
-            ->with('success', 'Data pengembalian buku berhasil disimpan. Silahkan tunggu persetujuan dari admin');
+        $peminjaman = Peminjaman::findOrFail($validatedData['peminjaman_id']);
+        $peminjaman->status = 'Dikembalikan';
+        $peminjaman->save();
+
+        return redirect()->route('pengembalian-buku.index')->with('success', 'Data pengembalian buku berhasil disimpan. Silahkan tunggu persetujuan dari admin');
     }
 
     public function edit(string $id)
     {
         $pengembalian = Returbuku::findOrFail($id);
-
         return view('returnbook.edit', compact('pengembalian'));
     }
 
     public function update(Request $request, string $id)
     {
         $validatedData = $request->validate([
-
-            'status' => 'required',
-            'description' => 'nullable|string',
-
+            'status' => 'string|required',
+            'deskripsi' => 'string|required',
+            'total_denda' => 'required',
         ]);
 
         $pengembalian = Returbuku::findOrFail($id);
 
         $pengembalian->status = $validatedData['status'];
-        $pengembalian->deskripsi = $validatedData['description'];
-
-
+        $pengembalian->deskripsi = $validatedData['deskripsi'];
+        $pengembalian->total_denda = $validatedData['total_denda'];
         $pengembalian->save();
 
         return redirect()->route('pengembalian-buku.index')
             ->with('success', 'Data pengembalian buku berhasil diperbarui.');
     }
-
 
     public function destroy(string $id)
     {

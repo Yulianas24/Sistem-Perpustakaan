@@ -52,16 +52,10 @@
                                 <x-dropdown-link :href="route('profile.edit')">
                                     {{ __('Profile') }}
                                 </x-dropdown-link>
-                                @if ($role === 'admin')
-                                <x-dropdown-link :href="route('settings.index')">
-                                    {{ __('Pengaturan') }}
-                                </x-dropdown-link>
-                                @endif
 
                                 <!-- Authentication -->
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
-
                                     <x-dropdown-link :href="route('logout')"
                                             onclick="event.preventDefault();
                                                         this.closest('form').submit();">

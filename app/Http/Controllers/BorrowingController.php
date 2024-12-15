@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Peminjaman;
 use App\Models\Setting;
-use App\Models\User;
+use App\Models\Member;
 use App\Models\Buku;
 
 
@@ -18,7 +18,7 @@ class BorrowingController extends Controller
     {
         $settings = Setting::first();
         $peminjaman = Peminjaman::query();
-
+        $peminjaman->where('status', 'Dipinjam');
         // Filter peminjaman sesuai dengan role pengguna
         if (auth()->user()->role === 'siswa') {
             $peminjaman->where('user_id', auth()->user()->id);
@@ -43,9 +43,7 @@ class BorrowingController extends Controller
             $status = $request->status;
             $peminjaman->where('status', $status);
         }
-
         $peminjaman = $peminjaman->paginate(10);
-
         return view('borrowing.index', compact('peminjaman'));
     }
 
@@ -55,7 +53,7 @@ class BorrowingController extends Controller
      */
     public function create()
     {
-        $users = User::all();
+        $users = Member::all();
         $buku = Buku::all();
         return view('borrowing.create', compact('users', 'buku'));
     }
@@ -67,23 +65,18 @@ class BorrowingController extends Controller
     {
 
         $validatedData = $request->validate([
-            'name' => 'required|string',
-            'user_id' => 'required|exists:users,id',
+            'user_id' => 'required|exists:members,id',
             'book_id' => 'required|exists:buku,id',
             'borrow_date' => 'required|date',
             'return_date' => 'required|date|after:borrow_date',
         ]);
 
-
         Peminjaman::create([
-            'name' => $validatedData['name'],
             'user_id' => $validatedData['user_id'],
             'buku_id' => $validatedData['book_id'],
             'tgl_peminjaman' => $validatedData['borrow_date'],
             'tgl_pengembalian' => $validatedData['return_date'],
             'status' => 'Dipinjam',
-            'deskripsi' => 'Buku dipinjam oleh '.$validatedData['name'],
-            'total_denda' => 0.00,
         ]);
 
 
@@ -96,11 +89,11 @@ class BorrowingController extends Controller
     public function show(string $id)
     {
         $borrowing = Peminjaman::findOrFail($id);
-        $fines = $borrowing->denda;
+        // $fines = $borrowing->denda;
 
-        $users = User::all();
+        // $users = User::all();
 
-        return view('borrowing.show', compact('borrowing', 'users', 'fines'));
+        return view('borrowing.show', compact('borrowing'));
     }
 
     /**
@@ -109,7 +102,7 @@ class BorrowingController extends Controller
     public function edit(string $id)
     {
         $borrowing = Peminjaman::findOrFail($id);
-        $users = User::all();
+        $users = Member::all();
 
         return view('borrowing.edit', compact('borrowing', 'users'));
     }

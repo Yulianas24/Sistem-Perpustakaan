@@ -15,7 +15,7 @@ class Borrowing extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Member::class);
     }
 
     // Method untuk meng-generate nomor peminjaman

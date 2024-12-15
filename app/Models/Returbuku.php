@@ -10,7 +10,8 @@ class Returbuku extends Model
     use HasFactory;
     protected $table = 'returbuku';
     protected $fillable = [
-        'peminjaman_id', 'status', 'deskripsi', 'photo'
+        'peminjaman_id', 'status', 'deskripsi', 'total_denda'
+
     ];
     public function peminjaman()
     {

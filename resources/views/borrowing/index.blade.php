@@ -46,13 +46,13 @@
                                     class="px-4 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
                                     Judul Buku
                                 </th>
-                                {{-- <th scope="col"
-                                    class="px-4 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
-                                    Keterangan
-                                </th> --}}
                                 <th scope="col"
                                     class="px-4 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
-                                    Status
+                                    Tanggal Pinjam
+                                </th>
+                                <th scope="col"
+                                    class="px-4 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
+                                    Tanggal Pengembalian
                                 </th>
                                 <th scope="col"
                                     class="px-4 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
@@ -67,13 +67,13 @@
                                         {{ $item->no_peminjaman }}
                                     </td>
                                     <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-900">
-                                        {{ $item->name }}</td>
+                                        {{ $item->user->nama }}</td>
                                     <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-900">
                                         {{ $item->buku->nama_buku }}</td>
-                                    {{-- <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-900">
-                                        {{ $item->deskripsi }}</td> --}}
                                     <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-900">
-                                        {{ $item->status }}</td>
+                                        {{ $item->tgl_peminjaman }}</td>
+                                    <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-900">
+                                        {{ $item->tgl_pengembalian }}</td>
 
                                     <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-900 flex space-x-2">
                                         <a href="{{ route('peminjaman-buku.show', $item->id) }}"
@@ -112,8 +112,6 @@
                                             </x-slot>
                                         </x-confirm-delete-modal>
                                         @endif
-
-
                                     </td>
                                 </tr>
                             @empty
