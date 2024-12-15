@@ -1,41 +1,40 @@
-<title>Tambah  Buku</title>
+<title>Edit Member</title>
 
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Tambah  Buku') }}
+            {{ __('Tambah Member') }}
         </h2>
     </x-slot>
 
     <div class="grid gap-2 p-2">
         <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
-                <form action="{{ route('buku.store') }}" method="POST">
+                <form action="{{ route('member.update', $member->id) }}" method="POST">
                     @csrf
+                    @method('PUT')
 
                     <div class="mb-4">
-                        <x-input-label for="book_title">{{ __('Judul Buku') }}</x-input-label>
-                        <x-text-input id="book_title" class="mt-1 block w-full" type="text" name="book_title"
-                            value="{{ old('book_title') }}" required />
-                        @error('book_title')
+                        <x-input-label for="nama_anggota">{{ __('Nama Anggota') }}</x-input-label>
+                        <x-text-input id="nama_anggota" class="mt-1 block w-full" type="text" name="nama"
+                            value="{{ $member->nama }}" required />
+                        @error('nama')
                             <x-input-error-set :message="$message" class="mt-2" />
                         @enderror
                     </div>
-
                     <div class="mb-4">
-                        <x-input-label for="author">{{ __('Nama Pengarang') }}</x-input-label>
-                        <x-text-input id="author" class="mt-1 block w-full" type="text" name="author" value="{{ old('author') }}"
-                            required />
-                        @error('author')
+                        <x-input-label for="nisn">{{ __('NISN') }}</x-input-label>
+                        <x-text-input id="nisn" class="mt-1 block w-full" type="text" name="nisn"
+                            value="{{ $member->nisn }}" required />
+                        @error('nama')
                             <x-input-error-set :message="$message" class="mt-2" />
                         @enderror
                     </div>
-
                     <div class="mb-4">
-                        <x-input-label for="release_year">{{ __('Tahun Rilis') }}</x-input-label>
-                        <x-text-input id="release_year" class="mt-1 block w-full" type="number" name="release_year"
-                            value="{{ old('release_year') }}" required />
-                        @error('release_year')
+                        <x-input-label for="angkatan">{{ __('Angkatan') }}</x-input-label>
+                        <x-text-input id="angkatan" class="mt-1 block w-full" type="text" name="angkatan"
+                            value="{{ $member->angkatan }}" required />
+                        @error('nama')
                             <x-input-error-set :message="$message" class="mt-2" />
                         @enderror
                     </div>
@@ -44,7 +43,7 @@
                             {{ __('Simpan') }}
                         </x-primary-button>
 
-                        <x-secondary-button href="{{ route('buku.index') }}">
+                        <x-secondary-button href="{{ route('member.index') }}">
                             Kembali
                         </x-secondary-button>
 

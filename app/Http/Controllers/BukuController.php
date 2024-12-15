@@ -36,7 +36,7 @@ class BukuController extends Controller
      */
     public function create()
     {
-        return \view('book.create');
+        return view('book.create');
     }
 
     /**
@@ -60,19 +60,12 @@ class BukuController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
     {
-        //
+        $book = Buku::where('id', $id)->first();
+        return view('book.edit', compact('book'));
     }
 
     /**
@@ -80,7 +73,19 @@ class BukuController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validatedData = $request->validate([
+            'book_title' => 'required|string',
+            'author' => 'required|string',
+            'release_year' => 'required|string',
+        ]);
+
+        $book = Buku::findOrFail($id);
+        $book->nama_buku = $validatedData['book_title'];
+        $book->penulis = $validatedData['author'];
+        $book->tahun_rilis = $validatedData['release_year'];
+
+        $book->save();
+        return redirect()->route('buku.index')->with('success', 'Buku berhasil diperbarui.');
     }
 
     /**
@@ -90,10 +95,8 @@ class BukuController extends Controller
     {
         $buku = Buku::findOrFail($id);
 
-
         $buku->peminjaman()->delete();
         // $buku->returbuku()->delete();
-
 
         $buku->delete();
 

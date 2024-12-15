@@ -10,9 +10,19 @@ class MemberController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $member = Member::query();
+
+
+        if ($request->has('search') && !empty($request->search)) {
+            $searchTerm = $request->search;
+            $member->where('nama', 'like', '%' . $searchTerm . '%');
+        }
+
+        $member = $member->paginate(10);
+        return view('member.index', compact('member'));
+
     }
 
     /**
@@ -20,7 +30,7 @@ class MemberController extends Controller
      */
     public function create()
     {
-        //
+        return view('member.create');
     }
 
     /**
@@ -28,7 +38,19 @@ class MemberController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+
+            'nama' => 'required|string',
+            'nisn' => 'required|string',
+            'angkatan' => 'required|string',
+        ]);
+
+        Member::create([
+            'nama' => $validatedData['nama'],
+            'nisn' => $validatedData['nisn'],
+            'angkatan' => $validatedData['angkatan'],
+        ]);
+        return redirect()->route('member.index')->with('success', 'Member berhasil ditambahkan.');
     }
 
     /**
@@ -42,24 +64,44 @@ class MemberController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Member $member)
+    public function edit(string $id)
     {
-        //
+        $member = member::where('id', $id)->first();
+        return view('member.edit', compact('member'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Member $member)
+    public function update(Request $request, string $id)
     {
-        //
+        $validatedData = $request->validate([
+            'nama' => 'required|string',
+            'nisn' => 'required|string',
+            'angkatan' => 'required|string',
+        ]);
+
+        $member = member::findOrFail($id);
+        $member->nama = $validatedData['nama'];
+        $member->nisn = $validatedData['nisn'];
+        $member->angkatan = $validatedData['angkatan'];
+
+        $member->save();
+        return redirect()->route('member.index')->with('success', 'member berhasil diperbarui.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Member $member)
+    public function destroy(string $id)
     {
-        //
+        $member = Member::findOrFail($id);
+
+        // $member->peminjaman()->delete();
+
+        $member->delete();
+
+        return redirect()->route('member.index')
+            ->with('success', 'Data Member berhasil dihapus.');
     }
 }

@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('member', function (Blueprint $table) {
+        Schema::create('members', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
             $table->string('nisn')->unique()->nullable();
-            $table->string('kelas')->nullable();
             $table->string('angkatan')->nullable();
             $table->timestamps();
         });
@@ -26,7 +25,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('member', function (Blueprint $table) {
+        Schema::table('members', function (Blueprint $table) {
             //
         });
     }

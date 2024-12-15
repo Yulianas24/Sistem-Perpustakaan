@@ -25,7 +25,7 @@
 <body>
     <center>
         <h3>Laporan Peminjaman Buku</h3>
-        <h2>{{ App\Models\Setting::first()->webname }}</h2>
+        <h2>SDN 6 Pekanbaru</h2>
 
         <p><strong>Periode:</strong> {{ $tanggal_mulai->format('d M Y') }} - {{ $tanggal_selesai->format('d M Y') }}</p>
 

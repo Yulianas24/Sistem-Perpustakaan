@@ -9,8 +9,7 @@
             <a href="{{ route('dashboard') }}" class="flex items-center">
                 <x-application-logo class="block h-9 w-9  fill-current text-gray-800 dark:text-gray-200" />
                 <div class="ml-2">
-                    <div class="font-bold text-sm text-black dark:text-gray-200">{{ App\Models\Setting::first()->webname }}</div>
-                    <div class="text-sm text-black">{{ App\Models\Setting::first()->description }}</div>
+                    <div class="font-bold text-sm text-black dark:text-gray-200">SDN 6 Pekanbaru</div>
                 </div>
             </a>
         </div>
@@ -20,6 +19,9 @@
                 {{ __('Dashboard') }}
             </x-nav-link>
             @if ($role === 'admin')
+            <x-nav-link :href="route('member.index')" :active="request()->routeIs('member.index')">
+                {{ __('Data Member') }}
+            </x-nav-link>
             <x-nav-link :href="route('buku.index')" :active="request()->routeIs('buku.index')">
                 {{ __('Data Buku') }}
             </x-nav-link>

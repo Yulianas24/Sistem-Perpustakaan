@@ -1,8 +1,8 @@
-<title>Buku</title>
+<title>Member</title>
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Daftar Buku') }}
+            {{ __('Daftar Member') }}
         </h2>
     </x-slot>
 
@@ -12,12 +12,12 @@
 
             <div class="p-4 sm:p-6 dark:bg-gray-900 border-b border-gray-200">
                 <div class="flex justify-between content-center items-center">
-                    <x-secondary-button href="{{ route('buku.create') }}">
+                    <x-secondary-button href="{{ route('member.create') }}">
                         Tambah
                     </x-secondary-button>
-                    <form action="{{ route('buku.index') }}" method="GET"
+                    <form action="{{ route('member.index') }}" method="GET"
                         class="flex gap-2">
-                        <input type="text" name="search" placeholder="Cari judul buku..."
+                        <input type="text" name="search" placeholder="Cari nama member..."
                             value="{{ request('search') }}"
                             class="border border-gray-300 focus:ring-gray-500 focus:border-gray-500 block rounded-md p-2 w-full sm:w-auto">
 
@@ -38,11 +38,11 @@
                                 </th>
                                 <th scope="col"
                                     class="px-4 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
-                                    Penulis
+                                    NISN
                                 </th>
                                 <th scope="col"
                                     class="px-4 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
-                                    Tahun Rilis
+                                    Angkatan
                                 </th>
 
                                 <th scope="col"
@@ -52,20 +52,22 @@
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
-                            @forelse ($buku as $item)
+                            @forelse ($member as $item)
                                 <tr>
                                     <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-900">
-                                        {{ $item->nama_buku }}
+                                        {{ $item->nama }}
                                     </td>
                                     <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-900">
-                                        {{ $item->penulis }}</td>
+                                        {{ $item->nisn }}
+                                    </td>
                                     <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-900">
-                                        {{ $item->tahun_rilis }}</td>
+                                        {{ $item->angkatan }}
+                                    </td>
 
                                     <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-900 flex space-x-2">
                                         @if(auth()->user()->role !== 'siswa')
-                                        <a href="{{ route('buku.edit', $item->id) }}"
-                                            class="text-blue-600 hover:text-blue-900">Edit</a>
+                                        <a href="{{ route('member.edit', $item->id) }}"
+                                            class="text-gray-600 hover:text-gray-900">Edit</a>
 
                                         <x-confirm-delete-modal>
                                             <x-slot name="trigger">
@@ -78,12 +80,12 @@
                                             </x-slot>
 
                                             <x-slot name="content">
-                                                Apakah Anda yakin ingin menghapus buku ini?
+                                                Apakah Anda yakin ingin menghapus member ini?
                                             </x-slot>
 
                                             <x-slot name="footer">
                                                 <form id="deleteForm-{{ $item->id }}"
-                                                    action="{{ route('buku.destroy', $item->id) }}"
+                                                    action="{{ route('member.destroy', $item->id) }}"
                                                     method="POST">
                                                     @csrf
                                                     @method('DELETE')
@@ -100,7 +102,7 @@
                                         </x-confirm-delete-modal>
                                         @endif
 
-                                        {{-- <a href="{{ route('buku.show', $item->id) }}"
+                                        {{-- <a href="{{ route('member.show', $item->id) }}"
                                             class="text-gray-600 hover:text-gray-900">Detail</a> --}}
                                     </td>
                                 </tr>
@@ -115,7 +117,7 @@
                 </div>
 
                 <div class="mt-4">
-                    {{ $buku->appends(request()->input())->links() }}
+                    {{ $member->appends(request()->input())->links() }}
                 </div>
 
             </div>

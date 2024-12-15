@@ -34,7 +34,7 @@
 
     <div class="flex flex-col items-center mt-16">
         <h1 class="text-3xl font-semibold mb-6 text-center text-gray-800 dark:text-white">Selamat datang di Sistem Informasi Perpustakaan Sekolah</h1>
-        <h2 class="text-3xl font-semibold mb-6 text-red-400">{{ App\Models\Setting::first()->webname }}</h2>
+        <h2 class="text-3xl font-semibold mb-6 text-red-400">SD Negeri 6 Pekanbaru</h2>
         <p class="text-center max-w-md text-gray-800 dark:text-white">Masuk untuk mengakses layanan perpustakaan secara online.</p>
         <div class="flex flex-col md:flex-row mt-8 space-y-4 md:space-y-0 md:space-x-4">
             <a href="{{ route('login') }}" class="bg-white shadow-lg rounded-lg p-4 flex items-center justify-center space-x-2 transition duration-300 hover:shadow-xl w-full md:w-auto">

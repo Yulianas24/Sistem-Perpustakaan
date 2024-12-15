@@ -126,21 +126,13 @@ class BorrowingController extends Controller
         ]);
 
         $borrowing = Peminjaman::findOrFail($id);
-
-        // $borrowing->user_id = $validatedData['user_id'];
-        // $borrowing->borrow_date = $validatedData['borrow_date'];
-        // $borrowing->return_date = $validatedData['return_date'];
-        // $borrowing->book_title = $validatedData['book_title'];
-        // $borrowing->author = $validatedData['author'];
-        // $borrowing->release_year = $validatedData['release_year'];
         $borrowing->status = $validatedData['status'];
         $borrowing->deskripsi = $validatedData['description'];
         $borrowing->total_denda = $validatedData['total_fine'];
 
         $borrowing->save();
 
-        return redirect()->route('peminjaman-buku.index')
-            ->with('success', 'Data peminjaman buku berhasil diperbarui.');
+        return redirect()->route('peminjaman-buku.index')->with('success', 'Data peminjaman buku berhasil diperbarui.');
     }
 
 

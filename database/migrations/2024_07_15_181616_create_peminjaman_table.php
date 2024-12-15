@@ -17,7 +17,7 @@ return new class extends Migration
             $table->date('tgl_peminjaman');
             $table->date('tgl_pengembalian');
             $table->string('status')->nullable();
-            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('user_id')->constrained('members');
             $table->foreignId('buku_id')->constrained('buku');
             $table->timestamps();
         });
