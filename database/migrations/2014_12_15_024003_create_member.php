@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama');
             $table->string('nisn')->unique()->nullable();
+            $table->string('kelas')->nullable();
             $table->string('angkatan')->nullable();
             $table->timestamps();
         });

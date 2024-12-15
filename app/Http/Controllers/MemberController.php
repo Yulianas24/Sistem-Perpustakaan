@@ -42,12 +42,14 @@ class MemberController extends Controller
 
             'nama' => 'required|string',
             'nisn' => 'required|string',
+            'kelas' => 'required|string',
             'angkatan' => 'required|string',
         ]);
 
         Member::create([
             'nama' => $validatedData['nama'],
             'nisn' => $validatedData['nisn'],
+            'kelas' => $validatedData['kelas'],
             'angkatan' => $validatedData['angkatan'],
         ]);
         return redirect()->route('member.index')->with('success', 'Member berhasil ditambahkan.');
@@ -78,12 +80,14 @@ class MemberController extends Controller
         $validatedData = $request->validate([
             'nama' => 'required|string',
             'nisn' => 'required|string',
+            'kelas' => 'required|string',
             'angkatan' => 'required|string',
         ]);
 
         $member = member::findOrFail($id);
         $member->nama = $validatedData['nama'];
         $member->nisn = $validatedData['nisn'];
+        $member->kelas = $validatedData['kelas'];
         $member->angkatan = $validatedData['angkatan'];
 
         $member->save();

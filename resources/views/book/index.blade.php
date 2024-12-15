@@ -12,9 +12,14 @@
 
             <div class="p-4 sm:p-6 dark:bg-gray-900 border-b border-gray-200">
                 <div class="flex justify-between content-center items-center">
-                    <x-secondary-button href="{{ route('buku.create') }}">
-                        Tambah
-                    </x-secondary-button>
+                    <div class="flex gap-2">
+                        <x-secondary-button href="{{ route('buku.create') }}">
+                            Tambah
+                        </x-secondary-button>
+                        <x-secondary-button href="{{ route('kategori.index') }}">
+                            Data Kategori
+                        </x-secondary-button>
+                    </div>
                     <form action="{{ route('buku.index') }}" method="GET"
                         class="flex gap-2">
                         <input type="text" name="search" placeholder="Cari judul buku..."
@@ -44,6 +49,10 @@
                                     class="px-4 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
                                     Tahun Rilis
                                 </th>
+                                <th scope="col"
+                                    class="px-4 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
+                                    Kategori
+                                </th>
 
                                 <th scope="col"
                                     class="px-4 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
@@ -61,6 +70,8 @@
                                         {{ $item->penulis }}</td>
                                     <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-900">
                                         {{ $item->tahun_rilis }}</td>
+                                    <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-900">
+                                        {{ $item->kategori->nama }}</td>
 
                                     <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-900 flex space-x-2">
                                         @if(auth()->user()->role !== 'siswa')
@@ -69,8 +80,7 @@
 
                                         <x-confirm-delete-modal>
                                             <x-slot name="trigger">
-                                                <button @click="isOpen = true"
-                                                    class="text-red-600 hover:text-red-900">Hapus</button>
+                                                <button @click="isOpen=true" class="text-red-600 hover:text-red-900" >Hapus</button>
                                             </x-slot>
 
                                             <x-slot name="title">

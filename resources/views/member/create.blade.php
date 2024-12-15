@@ -21,22 +21,34 @@
                             <x-input-error-set :message="$message" class="mt-2" />
                         @enderror
                     </div>
+
                     <div class="mb-4">
                         <x-input-label for="nisn">{{ __('NISN') }}</x-input-label>
                         <x-text-input id="nisn" class="mt-1 block w-full" type="text" name="nisn"
-                            value="{{ old('nama') }}" required />
-                        @error('nama')
+                            value="{{ old('nisn') }}" required />
+                        @error('nisn')
                             <x-input-error-set :message="$message" class="mt-2" />
                         @enderror
                     </div>
+
+                    <div class="mb-4">
+                        <x-input-label for="kelas">{{ __('Kelas') }}</x-input-label>
+                        <x-text-input id="kelas" class="mt-1 block w-full" type="text" name="kelas"
+                            value="{{ old('Kelas') }}" required />
+                        @error('kelas')
+                            <x-input-error-set :message="$message" class="mt-2" />
+                        @enderror
+                    </div>
+
                     <div class="mb-4">
                         <x-input-label for="angkatan">{{ __('Angkatan') }}</x-input-label>
                         <x-text-input id="angkatan" class="mt-1 block w-full" type="text" name="angkatan"
-                            value="{{ old('nama') }}" required />
-                        @error('nama')
+                            value="{{ old('angkatan') }}" required />
+                        @error('angkatan')
                             <x-input-error-set :message="$message" class="mt-2" />
                         @enderror
                     </div>
+
                     <div class="flex items-center gap-4">
                         <x-primary-button class="bg-gray-600 hover:bg-gray-700 active:bg-gray-800">
                             {{ __('Simpan') }}

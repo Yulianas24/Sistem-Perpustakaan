@@ -18,7 +18,6 @@ class AdminSeeder extends Seeder
             'nama' => 'Admin',
             'email' => 'admin@email.com',
             'role' => 'admin',
-            'identitas' => '111111', //masukan NIP
             'alamat' => 'Yogyakarta', //masukan alamat
             'password' => Hash::make('secret'),
             'created_at' => now(),

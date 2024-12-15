@@ -26,7 +26,15 @@
                         <x-input-label for="nisn">{{ __('NISN') }}</x-input-label>
                         <x-text-input id="nisn" class="mt-1 block w-full" type="text" name="nisn"
                             value="{{ $member->nisn }}" required />
-                        @error('nama')
+                        @error('nisn')
+                            <x-input-error-set :message="$message" class="mt-2" />
+                        @enderror
+                    </div>
+                    <div class="mb-4">
+                        <x-input-label for="kelas">{{ __('Kelas') }}</x-input-label>
+                        <x-text-input id="kelas" class="mt-1 block w-full" type="text" name="kelas"
+                            value="{{ $member->kelas }}" required />
+                        @error('kelas')
                             <x-input-error-set :message="$message" class="mt-2" />
                         @enderror
                     </div>
@@ -34,7 +42,7 @@
                         <x-input-label for="angkatan">{{ __('Angkatan') }}</x-input-label>
                         <x-text-input id="angkatan" class="mt-1 block w-full" type="text" name="angkatan"
                             value="{{ $member->angkatan }}" required />
-                        @error('nama')
+                        @error('angkatan')
                             <x-input-error-set :message="$message" class="mt-2" />
                         @enderror
                     </div>

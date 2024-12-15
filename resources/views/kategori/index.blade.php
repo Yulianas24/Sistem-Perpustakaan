@@ -1,8 +1,8 @@
-<title>Member</title>
+<title>kategori</title>
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Daftar Member') }}
+            {{ __('Daftar kategori') }}
         </h2>
     </x-slot>
 
@@ -12,12 +12,12 @@
 
             <div class="p-4 sm:p-6 dark:bg-gray-900 border-b border-gray-200">
                 <div class="flex justify-between content-center items-center">
-                    <x-secondary-button href="{{ route('member.create') }}">
+                    <x-secondary-button href="{{ route('kategori.create') }}">
                         Tambah
                     </x-secondary-button>
-                    <form action="{{ route('member.index') }}" method="GET"
+                    <form action="{{ route('kategori.index') }}" method="GET"
                         class="flex gap-2">
-                        <input type="text" name="search" placeholder="Cari nama member..."
+                        <input type="text" name="search" placeholder="Cari nama kategori..."
                             value="{{ request('search') }}"
                             class="border border-gray-300 focus:ring-gray-500 focus:border-gray-500 block rounded-md p-2 w-full sm:w-auto">
 
@@ -56,7 +56,7 @@
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
-                            @forelse ($member as $item)
+                            @forelse ($kategori as $item)
                                 <tr>
                                     <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-900">
                                         {{ $item->nama }}
@@ -73,8 +73,8 @@
 
                                     <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-900 flex space-x-2">
                                         @if(auth()->user()->role !== 'siswa')
-                                        <a href="{{ route('member.edit', $item->id) }}"
-                                            class="text-blue-600 hover:text-blue-900">Edit</a>
+                                        <a href="{{ route('kategori.edit', $item->id) }}"
+                                            class="text-gray-600 hover:text-gray-900">Edit</a>
 
                                         <x-confirm-delete-modal>
                                             <x-slot name="trigger">
@@ -87,12 +87,12 @@
                                             </x-slot>
 
                                             <x-slot name="content">
-                                                Apakah Anda yakin ingin menghapus member ini?
+                                                Apakah Anda yakin ingin menghapus kategori ini?
                                             </x-slot>
 
                                             <x-slot name="footer">
                                                 <form id="deleteForm-{{ $item->id }}"
-                                                    action="{{ route('member.destroy', $item->id) }}"
+                                                    action="{{ route('kategori.destroy', $item->id) }}"
                                                     method="POST">
                                                     @csrf
                                                     @method('DELETE')
@@ -109,7 +109,7 @@
                                         </x-confirm-delete-modal>
                                         @endif
 
-                                        {{-- <a href="{{ route('member.show', $item->id) }}"
+                                        {{-- <a href="{{ route('kategori.show', $item->id) }}"
                                             class="text-gray-600 hover:text-gray-900">Detail</a> --}}
                                     </td>
                                 </tr>
@@ -124,7 +124,7 @@
                 </div>
 
                 <div class="mt-4">
-                    {{ $member->appends(request()->input())->links() }}
+                    {{ $kategori->appends(request()->input())->links() }}
                 </div>
 
             </div>

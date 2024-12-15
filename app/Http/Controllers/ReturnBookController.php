@@ -99,9 +99,9 @@ class ReturnBookController extends Controller
 
         $pengembalian = Returbuku::findOrFail($id);
 
-        $pengembalian->status = $validatedData['status'];
-        $pengembalian->deskripsi = $validatedData['deskripsi'];
-        $pengembalian->total_denda = $validatedData['total_denda'];
+        $pengembalian->status = $validatedData['statusy'];
+        $pengembalian->deskripsi = $validatedData['deskripsiy'];
+        $pengembalian->total_denda = $validatedData['total_denday'];
         $pengembalian->save();
 
         return redirect()->route('pengembalian-buku.index')

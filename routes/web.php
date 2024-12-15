@@ -7,6 +7,7 @@ use App\Http\Controllers\BorrowingController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ReturnBookController;
 use App\Http\Controllers\BukuController;
+use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\MemberController;
 use App\Models\Borrowing;
 use App\Models\Returbook;
@@ -65,6 +66,15 @@ Route::middleware('auth', 'admin')->group(function () {
     Route::get('/buku/{id}', [BukuController::class, 'show'])->name('buku.show');
     Route::put('/buku/{id}', [BukuController::class, 'update'])->name('buku.update');
     Route::delete('/buku/{id}', [BukuController::class, 'destroy'])->name('buku.destroy');
+
+
+    Route::get('/kategori', [KategoriController::class, 'index'])->name('kategori.index');
+    Route::post('/kategori', [KategoriController::class, 'store'])->name('kategori.store');
+    Route::get('/kategori/create', [KategoriController::class, 'create'])->name('kategori.create');
+    Route::get('/kategori/{id}/edit', [KategoriController::class, 'edit'])->name('kategori.edit');
+    Route::get('/kategori/{id}', [KategoriController::class, 'show'])->name('kategori.show');
+    Route::put('/kategori/{id}', [KategoriController::class, 'update'])->name('kategori.update');
+    Route::delete('/kategori/{id}', [KategoriController::class, 'destroy'])->name('kategori.destroy');
 
 
     Route::get('/member', [MemberController::class, 'index'])->name('member.index');

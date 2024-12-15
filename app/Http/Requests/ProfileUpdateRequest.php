@@ -19,15 +19,8 @@ class ProfileUpdateRequest extends FormRequest
 
         return [
             'nama' => ['required', 'string', 'max:255'],
-            'identitas' => [
-                'required',
-                'string',
-                'max:25',
-                Rule::unique('users')->ignore($userId),
-            ],
             'telepon' => ['nullable', 'string', 'max:15'],
             'alamat' => ['nullable', 'string', 'max:255'],
-            'kelas' => ['nullable', 'string', 'max:20'],
             'email' => [
                 'required',
                 'string',
