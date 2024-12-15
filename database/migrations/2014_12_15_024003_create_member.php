@@ -11,24 +11,23 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('peminjaman', function (Blueprint $table) {
+        Schema::create('member', function (Blueprint $table) {
             $table->id();
-            $table->string('no_peminjaman');
-            $table->date('tgl_peminjaman');
-            $table->date('tgl_pengembalian');
-            $table->string('status')->nullable();
-            $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('buku_id')->constrained('buku');
+            $table->string('nama');
+            $table->string('nisn')->unique()->nullable();
+            $table->string('kelas')->nullable();
+            $table->string('angkatan')->nullable();
             $table->timestamps();
         });
     }
-
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('peminjaman');
+        Schema::table('member', function (Blueprint $table) {
+            //
+        });
     }
 };

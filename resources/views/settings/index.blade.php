@@ -1,4 +1,4 @@
-<title>{{config('app.titleSettings', 'Laravel')}} - {{$settings->webname}} </title>
+<title>{{config('app.titleSettings', 'Laravel')}} - SDN 6 Pekanbaru </title>
 
 <x-app-layout>
     <x-slot name="header">

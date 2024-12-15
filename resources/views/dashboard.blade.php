@@ -1,4 +1,4 @@
-<title>{{ config('app.titleDashboard', 'Laravel') }} - {{ $settings->webname }}</title>
+<title>{{ config('app.titleDashboard', 'Laravel') }} - SDN 6 Pekanbaru</title>
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
@@ -20,7 +20,7 @@
                         <div class="px-6 py-4">
                             <div class="font-bold text-xl mb-2">Perpustakaan Sekolah</div>
                             <p class="dark:text-gray-100 text-base">
-                                Pinjam Buku Favorit Kamu yang ada di Perpustakaan {{ $settings->webname }}.
+                                Pinjam Buku Favorit Kamu yang ada di Perpustakaan SDN 6 Pekanbaru.
                             </p>
                         </div>
                         <div class="px-6 pt-4 pb-2">

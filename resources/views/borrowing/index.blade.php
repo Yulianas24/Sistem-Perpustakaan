@@ -12,24 +12,11 @@
 
             <div class="p-4 sm:p-6 dark:bg-gray-900 border-b border-gray-200">
                 <div class="flex justify-between content-center items-center">
-                    @if(auth()->user()->role !== 'admin')
                     <x-secondary-button href="{{ route('peminjaman-buku.create') }}">
                         Tambah
                     </x-secondary-button>
-                    @endif
                     <form action="{{ route('peminjaman-buku.index') }}" method="GET"
                         class="flex sm:flex-row items-center gap-2">
-                        <select name="status"
-                            class="border border-gray-300 min-w-[200px] focus:ring-gray-500 focus:border-gray-500 block rounded-md p-2 w-full sm:w-auto">
-                            <option value="">Semua Status</option>
-                            <option value="Dipinjam" {{ request('status') == 'Dipinjam' ? 'selected' : '' }}>
-                                Dipinjam</option>
-                            <option value="Dikembalikan" {{ request('status') == 'Dikembalikan' ? 'selected' : '' }}>
-                                Dikembalikan</option>
-                            <option value="ACC" {{ request('status') == 'ACC' ? 'selected' : '' }}>ACC</option>
-                            <option value="PENDING" {{ request('status') == 'PENDING' ? 'selected' : '' }}>
-                                PENDING</option>
-                        </select>
                         <input type="text" name="name" placeholder="Cari nama peminjam..."
                             value="{{ request('name') }}"
                             class="border border-gray-300 focus:ring-gray-500 focus:border-gray-500 block rounded-md p-2 w-full sm:w-auto">
@@ -59,10 +46,10 @@
                                     class="px-4 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
                                     Judul Buku
                                 </th>
-                                <th scope="col"
+                                {{-- <th scope="col"
                                     class="px-4 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
                                     Keterangan
-                                </th>
+                                </th> --}}
                                 <th scope="col"
                                     class="px-4 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
                                     Status
@@ -80,18 +67,18 @@
                                         {{ $item->no_peminjaman }}
                                     </td>
                                     <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-900">
-                                        {{ $item->user->nama }}</td>
+                                        {{ $item->name }}</td>
                                     <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-900">
                                         {{ $item->buku->nama_buku }}</td>
-                                    <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-900">
-                                        {{ $item->deskripsi }}</td>
+                                    {{-- <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-900">
+                                        {{ $item->deskripsi }}</td> --}}
                                     <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-900">
                                         {{ $item->status }}</td>
 
                                     <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-900 flex space-x-2">
+                                        <a href="{{ route('peminjaman-buku.show', $item->id) }}"
+                                            class="text-gray-600 hover:text-gray-900">Detail</a>
                                         @if(auth()->user()->role !== 'siswa')
-                                        <a href="{{ route('peminjaman-buku.edit', $item->id) }}"
-                                            class="text-gray-600 hover:text-gray-900">Edit</a>
 
                                         <x-confirm-delete-modal>
                                             <x-slot name="trigger">
@@ -126,8 +113,7 @@
                                         </x-confirm-delete-modal>
                                         @endif
 
-                                        <a href="{{ route('peminjaman-buku.show', $item->id) }}"
-                                            class="text-gray-600 hover:text-gray-900">Detail</a>
+
                                     </td>
                                 </tr>
                             @empty

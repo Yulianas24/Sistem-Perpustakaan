@@ -28,7 +28,7 @@
         @if ($settings->logo)
             <div class="mt-2">
                 <p class="text-sm text-black">Logo saat ini:</p>
-                <img src="{{ asset('storage/' . $settings->logo) }}" alt="Current Logo" class="mt-1 h-20">
+                <img src="{{ asset('storage/logo.jpg') }}" alt="Current Logo" class="mt-1 h-20">
             </div>
         @endif
         @error('logo')

@@ -67,23 +67,22 @@ class BorrowingController extends Controller
     {
 
         $validatedData = $request->validate([
+            'name' => 'required|string',
             'user_id' => 'required|exists:users,id',
             'book_id' => 'required|exists:buku,id',
             'borrow_date' => 'required|date',
             'return_date' => 'required|date|after:borrow_date',
-            // 'book_title' => 'required|string',
-            // 'author' => 'required|string',
-            // 'release_year' => 'required|string',
         ]);
 
 
         Peminjaman::create([
+            'name' => $validatedData['name'],
             'user_id' => $validatedData['user_id'],
             'buku_id' => $validatedData['book_id'],
             'tgl_peminjaman' => $validatedData['borrow_date'],
             'tgl_pengembalian' => $validatedData['return_date'],
-            'status' => 'PENDING',
-            'deskripsi' => 'Menunggu Persetujuan Admin',
+            'status' => 'Dipinjam',
+            'deskripsi' => 'Buku dipinjam oleh '.$validatedData['name'],
             'total_denda' => 0.00,
         ]);
 
@@ -121,12 +120,6 @@ class BorrowingController extends Controller
     public function update(Request $request, string $id)
     {
         $validatedData = $request->validate([
-            // 'user_id' => 'required|exists:users,id',
-            // 'borrow_date' => 'required|date',
-            // 'return_date' => 'required|date|after:borrow_date',
-            // 'book_title' => 'required|string',
-            // 'author' => 'required|string',
-            // 'release_year' => 'required|string',
             'status' => 'required',
             'description' => 'nullable|string',
             'total_fine' => 'required|numeric',

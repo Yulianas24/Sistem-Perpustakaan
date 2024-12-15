@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('returbuku', function (Blueprint $table) {
             $table->id();
             $table->foreignId('peminjaman_id')->constrained('peminjaman');
-            $table->string('status')->nullable();;
-            $table->string('deskripsi')->nullable();;
-            $table->string('photo')->nullable();;
+            $table->string('status')->nullable();
+            $table->string('deskripsi')->nullable();
+            $table->decimal('total_denda', 10, 2)->default(0.00);
             $table->timestamps();
         });
     }

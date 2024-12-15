@@ -1,21 +1,10 @@
-@if(auth()->user()->role !== 'siswa')
-<div class="mt-1 block w-full bg-white border-gray-300 rounded-md shadow-sm">
-
-
-    Admin Tidak Bisa Menambah Pinjaman Buku, Tugas Admin Mengedit Status Pinjaman
-</div>
-@endif
-
-
-
-@if (auth()->user()->role !== 'admin')
-    <form action="{{ route('peminjaman-buku.store') }}" method="POST">
+<form action="{{ route('peminjaman-buku.store') }}" method="POST">
         @csrf
 
         <div class="mb-4">
             <x-input-label for="user_id">{{ __('Nama Siswa') }}</x-input-label>
             <x-text-input id="user_id" class="mt-1 block w-full bg-white border-gray-300 rounded-md shadow-sm"
-                type="text" name="name" value="{{ Auth::user()->nama }}" readonly />
+                type="text" name="name" value="{{ old('name') }}" required />
 
             <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
             @error('user_id')
@@ -26,7 +15,7 @@
 
         <div class="mb-4">
             <x-input-label for="book_id">{{ __('Pilih Buku') }}</x-input-label>
-            <select id="book_id" name="book_id" class="mt-1 block w-full" required>
+            <select id="book_id" name="book_id" class="border px-3 py-2 mt-1 block w-full bg-white border-gray-300 rounded-md shadow-sm" required>
                 <option value="">Pilih Buku</option>
                 @foreach ($buku as $book)
                     <option value="{{ $book->id }}">{{ $book->nama_buku }}</option>
@@ -37,27 +26,6 @@
             @enderror
         </div>
 
-
-
-        {{--
-    <div class="mb-4">
-        <x-input-label for="author">{{ __('Nama Pengarang') }}</x-input-label>
-        <x-text-input id="author" class="mt-1 block w-full" type="text" name="author" value="{{ old('author') }}"
-            required />
-        @error('author')
-            <x-input-error-set :message="$message" class="mt-2" />
-        @enderror
-    </div>
-
-
-    <div class="mb-4">
-        <x-input-label for="release_year">{{ __('Tahun Rilis') }}</x-input-label>
-        <x-text-input id="release_year" class="mt-1 block w-full" type="number" name="release_year"
-            value="{{ old('release_year') }}" required />
-        @error('release_year')
-            <x-input-error-set :message="$message" class="mt-2" />
-        @enderror
-    </div> --}}
 
         <div class="mb-4">
             <x-input-label for="borrow_date">{{ __('Tanggal Meminjam') }}</x-input-label>
@@ -89,5 +57,4 @@
 
         </div>
 
-    </form>
-@endif
+</form>
