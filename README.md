@@ -10,7 +10,7 @@
 
 1. Clone projek melalui terminal / command prompt / git bash dengan perintah:
    ```bash
-   git clone https://github.com/abdlmnf17/puslah-perpustakaan-sekolah-laravel10.git
+   git clone https://github.com/Yulianas24/Sistem-Perpustakaan.git
    ```
 
 2. Pindahkan folder hasil clone ke direktori Xampp/htdocs/disini jika memakai xampp dan ke /laragon/www/disini jka memakai laragon.
