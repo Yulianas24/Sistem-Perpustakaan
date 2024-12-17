@@ -6,7 +6,7 @@ use App\Models\Peminjaman;
 use Illuminate\Http\Request;
 use  App\Models\Returbuku;
 use  App\Models\Kategori;
-use App\Models\Setting;
+
 
 class BukuController extends Controller
 {
@@ -15,14 +15,14 @@ class BukuController extends Controller
      */
     public function index(Request $request)
     {
-        $settings = Setting::first();
+
         $buku = Buku::query();
         if ($request->has('search') && !empty($request->search)) {
             $searchTerm = $request->search;
             $buku->where('nama_buku', 'like', '%' . $searchTerm . '%');
         }
         $buku = $buku->paginate(10);
-        return view('book.index', compact('settings', 'buku'));
+        return view('book.index', compact('buku'));
 
     }
 

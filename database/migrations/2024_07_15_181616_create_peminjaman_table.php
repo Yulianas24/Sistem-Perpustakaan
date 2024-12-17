@@ -19,6 +19,10 @@ return new class extends Migration
             $table->string('status')->nullable();
             $table->foreignId('user_id')->constrained('members');
             $table->foreignId('buku_id')->constrained('buku');
+            $table->string('status_pengembalian')->nullable();
+            $table->string('deskripsi')->nullable();
+            $table->decimal('total_denda', 10, 2)->default(0.00);
+
             $table->timestamps();
         });
     }

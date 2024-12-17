@@ -79,12 +79,12 @@
                                 @forelse ($pengembalian as $item)
                                     <tr>
                                         <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-900">
-                                            {{ $item->peminjaman->no_peminjaman }}
+                                            {{ $item->no_peminjaman }}
                                         </td>
                                         <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-900">
-                                            {{ $item->peminjaman->user->nama }}</td>
+                                            {{ $item->user->nama }}</td>
                                         <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-900">
-                                            {{ $item->peminjaman->buku->nama_buku }}</td>
+                                            {{ $item->buku->nama_buku }}</td>
                                         <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-900">
                                             {{ $item->deskripsi }}</td>
                                         <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-900">

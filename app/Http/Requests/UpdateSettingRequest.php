@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Requests;
-use App\Models\Setting;
+
 
 use Illuminate\Foundation\Http\FormRequest;
 

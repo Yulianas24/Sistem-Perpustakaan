@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Peminjaman;
-use App\Models\Setting;
+
 use App\Models\Member;
 use App\Models\Buku;
 
@@ -16,7 +16,7 @@ class BorrowingController extends Controller
      */
     public function index(Request $request)
     {
-        $settings = Setting::first();
+
         $peminjaman = Peminjaman::query();
         $peminjaman->where('status', 'Dipinjam');
         // Filter peminjaman sesuai dengan role pengguna

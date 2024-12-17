@@ -1,8 +1,8 @@
-<title>kategori</title>
+<title>user</title>
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Daftar kategori') }}
+            {{ __('Daftar user') }}
         </h2>
     </x-slot>
 
@@ -12,12 +12,12 @@
 
             <div class="p-4 sm:p-6 dark:bg-gray-900 border-b border-gray-200">
                 <div class="flex justify-between content-center items-center">
-                    <x-secondary-button href="{{ route('kategori.create') }}">
+                    <x-secondary-button href="{{ route('users.create') }}">
                         Tambah
                     </x-secondary-button>
-                    <form action="{{ route('kategori.index') }}" method="GET"
+                    <form action="{{ route('users.index') }}" method="GET"
                         class="flex gap-2">
-                        <input type="text" name="search" placeholder="Cari nama kategori..."
+                        <input type="text" name="search" placeholder="Cari nama user..."
                             value="{{ request('search') }}"
                             class="border border-gray-300 focus:ring-gray-500 focus:border-gray-500 block rounded-md p-2 w-full sm:w-auto">
 
@@ -36,6 +36,18 @@
                                     class="px-4 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
                                     Nama
                                 </th>
+                                <th scope="col"
+                                    class="px-4 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
+                                    Email
+                                </th>
+                                <th scope="col"
+                                    class="px-4 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
+                                    Nomor Telepon
+                                </th>
+                                <th scope="col"
+                                    class="px-4 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
+                                    Role
+                                </th>
 
                                 <th scope="col"
                                     class="px-4 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
@@ -44,14 +56,23 @@
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
-                            @forelse ($kategori as $item)
+                            @forelse ($users as $item)
                                 <tr>
                                     <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-900">
                                         {{ $item->nama }}
                                     </td>
+                                    <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-900">
+                                        {{ $item->email }}
+                                    </td>
+                                    <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-900">
+                                        {{ $item->telepon ?? '-' }}
+                                    </td>
+                                    <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-900">
+                                        {{ $item->role }}
+                                    </td>
 
                                     <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-900 flex space-x-2">
-                                        <a href="{{ route('kategori.edit', $item->id) }}"
+                                        <a href="{{ route('users.edit', $item->id) }}"
                                             class="text-gray-600 hover:text-gray-900">Edit</a>
 
                                         <x-confirm-delete-modal>
@@ -65,12 +86,12 @@
                                             </x-slot>
 
                                             <x-slot name="content">
-                                                Apakah Anda yakin ingin menghapus kategori ini?
+                                                Apakah Anda yakin ingin menghapus user ini?
                                             </x-slot>
 
                                             <x-slot name="footer">
                                                 <form id="deleteForm-{{ $item->id }}"
-                                                    action="{{ route('kategori.destroy', $item->id) }}"
+                                                    action="{{ route('users.destroy', $item->id) }}"
                                                     method="POST">
                                                     @csrf
                                                     @method('DELETE')
@@ -98,7 +119,7 @@
                 </div>
 
                 <div class="mt-4">
-                    {{ $kategori->appends(request()->input())->links() }}
+                    {{ $users->appends(request()->input())->links() }}
                 </div>
 
             </div>

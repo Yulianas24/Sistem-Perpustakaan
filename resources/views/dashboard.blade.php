@@ -43,7 +43,7 @@
                     <div class="flex gap-3 justify-center">
                         <a class="block bg-blue-500 px-3 py-2 text-sm text-white rounded-lg" href="{{ route('peminjaman-buku.index') }}">Peminjaman Buku</a>
                         <a class="block bg-blue-500 px-3 py-2 text-sm text-white rounded-lg" href="{{ route('pengembalian-buku.index') }}">Pengembalian Buku</a>
-                        <a class="block bg-blue-500 px-3 py-2 text-sm text-white rounded-lg" href="{{ route('member.index') }}">Data Member</a>
+                        <a class="block bg-blue-500 px-3 py-2 text-sm text-white rounded-lg" href="{{ route('laporan.index') }}">Laporan</a>
                     </div>
                 </div>
             </div>

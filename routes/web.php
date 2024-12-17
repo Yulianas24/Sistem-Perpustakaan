@@ -2,13 +2,13 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\BorrowingController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ReturnBookController;
 use App\Http\Controllers\BukuController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\UsersController;
 use App\Models\Borrowing;
 use App\Models\Returbook;
 use Illuminate\Support\Facades\Route;
@@ -39,6 +39,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/peminjaman-buku/create', [BorrowingController::class, 'create'])->name('peminjaman-buku.create');
     Route::get('/peminjaman-buku/{id}', [BorrowingController::class, 'show'])->name('peminjaman-buku.show');
     Route::post('/peminjaman-buku', [BorrowingController::class, 'store'])->name('peminjaman-buku.store');
+    Route::get('/peminjaman-buku/{id}/edit', [BorrowingController::class, 'edit'])->name('peminjaman-buku.edit');
+    Route::put('/peminjaman-buku/{id}', [BorrowingController::class, 'update'])->name('peminjaman-buku.update');
+    Route::delete('/peminjaman-buku/{id}', [BorrowingController::class, 'destroy'])->name('peminjaman-buku.destroy');
 
     Route::get('/pengembalian-buku', [ReturnbookController::class, 'index'])->name('pengembalian-buku.index');
     Route::get('/pengembalian-buku/create', [ReturnbookController::class, 'create'])->name('pengembalian-buku.create');
@@ -49,14 +52,17 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    Route::get('/pengembalian-buku/{id}/edit', [ReturnbookController::class, 'edit'])->name('pengembalian-buku.edit');
+    Route::put('/pengembalian-buku/{id}', [ReturnbookController::class, 'update'])->name('pengembalian-buku.update');
+    Route::delete('/pengembalian-buku/{id}', [ReturnbookController::class, 'destroy'])->name('pengembalian-buku.destroy');
+    Route::get('/laporan', [ReportController::class, 'index'])->name('laporan.index');
+    Route::get('/laporan-pdf', [ReportController::class, 'generatePDF'])->name('laporan.cetak');
+
 
 });
 Route::middleware('auth', 'admin')->group(function () {
 
-    Route::get('/settings', [SettingsController::class, 'index'])->name('settings.index');
-    Route::get('/peminjaman-buku/{id}/edit', [BorrowingController::class, 'edit'])->name('peminjaman-buku.edit');
-    Route::put('/peminjaman-buku/{id}', [BorrowingController::class, 'update'])->name('peminjaman-buku.update');
-    Route::delete('/peminjaman-buku/{id}', [BorrowingController::class, 'destroy'])->name('peminjaman-buku.destroy');
+
 
 
     Route::get('/buku', [BukuController::class, 'index'])->name('buku.index');
@@ -85,12 +91,14 @@ Route::middleware('auth', 'admin')->group(function () {
     Route::put('/member/{id}', [MemberController::class, 'update'])->name('member.update');
     Route::delete('/member/{id}', [MemberController::class, 'destroy'])->name('member.destroy');
 
-    Route::get('/pengembalian-buku/{id}/edit', [ReturnbookController::class, 'edit'])->name('pengembalian-buku.edit');
-    Route::put('/pengembalian-buku/{id}', [ReturnbookController::class, 'update'])->name('pengembalian-buku.update');
-    Route::delete('/pengembalian-buku/{id}', [ReturnbookController::class, 'destroy'])->name('pengembalian-buku.destroy');
-    Route::put('/settings/add', [SettingsController::class, 'update'])->name('settings.update');
-    Route::get('/laporan', [ReportController::class, 'index'])->name('laporan.index');
-    Route::get('/laporan-pdf', [ReportController::class, 'generatePDF'])->name('laporan.cetak');
+
+    Route::get('/users', [UsersController::class, 'index'])->name('users.index');
+    Route::post('/users', [UsersController::class, 'store'])->name('users.store');
+    Route::get('/users/create', [UsersController::class, 'create'])->name('users.create');
+    Route::get('/users/{id}/edit', [UsersController::class, 'edit'])->name('users.edit');
+    Route::get('/users/{id}', [UsersController::class, 'show'])->name('users.show');
+    Route::put('/users/{id}', [UsersController::class, 'update'])->name('users.update');
+    Route::delete('/users/{id}', [UsersController::class, 'destroy'])->name('users.destroy');
 
 });
 

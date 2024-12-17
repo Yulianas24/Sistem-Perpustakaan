@@ -15,27 +15,31 @@
         </div>
         <div class="grid gap-1 px-1 py-3">
             <!-- Navigation Links -->
+            <p class="text-sm ml-2 text-gray-700 font-semibold">Menu Utama</p>
+            <hr>
             <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-nav-link>
-            @if ($role === 'admin')
-            <x-nav-link :href="route('member.index')" :active="request()->routeIs('member.index')">
-                {{ __('Data Member') }}
-            </x-nav-link>
-            <x-nav-link :href="route('buku.index')" :active="request()->routeIs('buku.index')">
-                {{ __('Data Buku') }}
-            </x-nav-link>
-            @endif
             <x-nav-link :href="route('peminjaman-buku.index')" :active="request()->routeIs('peminjaman-buku.index')">
                 {{ __('Pinjam Buku') }}
             </x-nav-link>
-
             <x-nav-link :href="route('pengembalian-buku.index')" :active="request()->routeIs('pengembalian-buku.index')">
                 {{ __('Pengembalian Buku') }}
             </x-nav-link>
-            @if ($role === 'admin')
             <x-nav-link :href="route('laporan.index')" :active="request()->routeIs('laporan.index')">
                 {{ __('Laporan') }}
+            </x-nav-link>
+            @if ($role === 'admin')
+            <p class="text-sm mt-5 ml-2 text-gray-700 font-semibold">Master Data</p>
+            <hr>
+            <x-nav-link :href="route('buku.index')" :active="request()->routeIs('buku.index')">
+                {{ __('Data Buku') }}
+            </x-nav-link>
+            <x-nav-link :href="route('member.index')" :active="request()->routeIs('member.index')">
+                {{ __('Data Member') }}
+            </x-nav-link>
+            <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
+                {{ __('Data Admin') }}
             </x-nav-link>
             @endif
         </div>
@@ -80,9 +84,6 @@
                     {{ __('Profile') }}
                 </x-responsive-nav-link>
                 @if ($role === 'admin')
-                <x-responsive-nav-link :href="route('settings.index')">
-                    {{ __('Settings') }}
-                </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('laporan.index')">
                     {{ __('Laporan') }}
                 </x-responsive-nav-link>

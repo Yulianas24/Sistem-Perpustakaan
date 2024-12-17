@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Returbuku;
-use App\Models\Setting;
+
 use App\Models\User;
 use App\Models\Buku;
 use App\Models\Peminjaman;
@@ -14,26 +14,19 @@ class ReturnBookController extends Controller
     public function index(Request $request)
     {
 
-        $settings = Setting::first();
-        $pengembalian = Returbuku::query();
 
-        if (auth()->user()->role === 'siswa') {
-            $pengembalian->whereHas('peminjaman', function ($query) {
-                $query->where('user_id', auth()->user()->id);
-            });
-        }
+        $pengembalian = Peminjaman::where('status', 'Dikembalikan');
 
         if ($request->has('search') && !empty($request->search)) {
             $searchTerm = $request->search;
-            $pengembalian->whereHas('peminjaman.buku', function ($query) use ($searchTerm) {
+            $pengembalian->whereHas('buku', function ($query) use ($searchTerm) {
                 $query->where('nama_buku', 'like', '%' . $searchTerm . '%');
             });
         }
 
-
         if ($request->has('name') && !empty($request->name)) {
             $searchTermName = $request->name;
-            $pengembalian->whereHas('peminjaman.user', function ($query) use ($searchTermName) {
+            $pengembalian->whereHas('user', function ($query) use ($searchTermName) {
                 $query->where('nama', 'like', '%' . $searchTermName . '%');
             });
         }
@@ -55,7 +48,7 @@ class ReturnBookController extends Controller
 
     public function show(string $id)
     {
-        $pengembalian = Returbuku::findOrFail($id);
+        $pengembalian = Peminjaman::findOrFail($id);
         return view('returnbook.show', compact('pengembalian'));
     }
 
@@ -69,15 +62,12 @@ class ReturnBookController extends Controller
             // 'photo' => 'nullable|image|mimes:jpeg,png,gif|max:2048',
         ]);
 
-        Returbuku::create([
-            'peminjaman_id' => $validatedData['peminjaman_id'],
-            'status' => $validatedData['status'],
-            'deskripsi' => $validatedData['deskripsi'],
-            'total_denda' => $validatedData['total_denda'],
-        ]);
-
         $peminjaman = Peminjaman::findOrFail($validatedData['peminjaman_id']);
         $peminjaman->status = 'Dikembalikan';
+        $peminjaman->status_pengembalian = $validatedData['status'];
+        $peminjaman->deskripsi = $validatedData['deskripsi'];
+        $peminjaman->total_denda = $validatedData['total_denda'];
+
         $peminjaman->save();
 
         return redirect()->route('pengembalian-buku.index')->with('success', 'Data pengembalian buku berhasil disimpan. Silahkan tunggu persetujuan dari admin');
@@ -85,7 +75,7 @@ class ReturnBookController extends Controller
 
     public function edit(string $id)
     {
-        $pengembalian = Returbuku::findOrFail($id);
+        $pengembalian = Peminjaman::findOrFail($id);
         return view('returnbook.edit', compact('pengembalian'));
     }
 
@@ -97,11 +87,11 @@ class ReturnBookController extends Controller
             'total_denda' => 'required',
         ]);
 
-        $pengembalian = Returbuku::findOrFail($id);
+        $pengembalian = Peminjaman::findOrFail($id);
 
-        $pengembalian->status = $validatedData['statusy'];
-        $pengembalian->deskripsi = $validatedData['deskripsiy'];
-        $pengembalian->total_denda = $validatedData['total_denday'];
+        $pengembalian->status_pengembalian = $validatedData['status'];
+        $pengembalian->deskripsi = $validatedData['deskripsi'];
+        $pengembalian->total_denda = $validatedData['total_denda'];
         $pengembalian->save();
 
         return redirect()->route('pengembalian-buku.index')
@@ -110,7 +100,7 @@ class ReturnBookController extends Controller
 
     public function destroy(string $id)
     {
-        $pengembalian = Returbuku::findOrFail($id);
+        $pengembalian = Peminjaman::findOrFail($id);
         $pengembalian->delete();
 
         return redirect()->route('pengembalian-buku.index')
