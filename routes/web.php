@@ -58,13 +58,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/laporan', [ReportController::class, 'index'])->name('laporan.index');
     Route::get('/laporan-pdf', [ReportController::class, 'generatePDF'])->name('laporan.cetak');
 
-
-});
-Route::middleware('auth', 'admin')->group(function () {
-
-
-
-
     Route::get('/buku', [BukuController::class, 'index'])->name('buku.index');
     Route::post('/buku', [BukuController::class, 'store'])->name('buku.store');
     Route::get('/buku/create', [BukuController::class, 'create'])->name('buku.create');
@@ -91,6 +84,9 @@ Route::middleware('auth', 'admin')->group(function () {
     Route::put('/member/{id}', [MemberController::class, 'update'])->name('member.update');
     Route::delete('/member/{id}', [MemberController::class, 'destroy'])->name('member.destroy');
 
+
+});
+Route::middleware('auth', 'admin')->group(function () {
 
     Route::get('/users', [UsersController::class, 'index'])->name('users.index');
     Route::post('/users', [UsersController::class, 'store'])->name('users.store');

@@ -29,7 +29,6 @@
             <x-nav-link :href="route('laporan.index')" :active="request()->routeIs('laporan.index')">
                 {{ __('Laporan') }}
             </x-nav-link>
-            @if ($role === 'admin')
             <p class="text-sm mt-5 ml-2 text-gray-700 font-semibold">Master Data</p>
             <hr>
             <x-nav-link :href="route('buku.index')" :active="request()->routeIs('buku.index')">
@@ -38,6 +37,7 @@
             <x-nav-link :href="route('member.index')" :active="request()->routeIs('member.index')">
                 {{ __('Data Member') }}
             </x-nav-link>
+            @if ($role === 'admin')
             <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
                 {{ __('Data Admin') }}
             </x-nav-link>

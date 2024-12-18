@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nama_buku');
             $table->string('penulis');
             $table->string('tahun_rilis')->nullable();
-            $table->foreignId('kategori_id')->constrained('kategoris');
+            $table->foreignId('kategori_id')->constrained('kategori');
             $table->string('photo')->nullable();
             $table->timestamps();
         });
